@@ -90,7 +90,7 @@ MIT License – free to use and modify.
 
 ## 🙌 Credits
 
-This project was developed by **Aryan Shukla** as part of a lung cancer detection initiative using deep learning.
+This project was developed by **Aryan Shukla** as part of a lung cancer detection initiative using deep learning class in 8th semester.
 
 ### Tools & Frameworks Used
 
