@@ -98,7 +98,7 @@ This project was developed by **Aryan Shukla** as part of a lung cancer detectio
 - [Keras](https://keras.io/)
 - [Flask](https://flask.palletsprojects.com/)
 - [NumPy](https://numpy.org/)
-- [Matplotlib](https://matplotlib.org/) *(for visualization, if used)*
+- [Matplotlib](https://matplotlib.org/) 
 
 ### Pretrained Models
 
@@ -108,7 +108,8 @@ This project was developed by **Aryan Shukla** as part of a lung cancer detectio
 
 ### Dataset
 
-Lung cancer image dataset used for training and validation was obtained from kaggle NQTTH.  
+Lung cancer image dataset used for training and validation was obtained from kaggle NQTTH. 
+Google drive link:<https://drive.google.com/drive/folders/1UBnDRAiQge8PUcqAZEtRGYvj-pH2Ui6J?usp=sharing> 
 
 ---
 
