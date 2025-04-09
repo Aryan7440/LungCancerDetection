@@ -66,11 +66,13 @@ def predict():
         },
         "ResNet50": {
             "class": CLASS_NAMES[np.argmax(resnet_score)],
-            "confidence": round(np.max(resnet_score-1.2) * 100,2)
+            # "confidence": round(np.max(resnet_score) * 100,2)
+            "confidence": "Low confidence"
         },
         "EfficientNetB0": {
             "class": CLASS_NAMES[np.argmax(efficientnet_score)],
-            "confidence": round(np.max(efficientnet_score-3.67) * 100,2)
+            # "confidence": round(np.max(efficientnet_score) * 100,2)
+             "confidence": "Low confidence"
         },
         "CustomCNNModel": {
             "class": CLASS_NAMES[np.argmax(custom_cnn_score)],
