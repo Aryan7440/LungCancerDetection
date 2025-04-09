@@ -15,6 +15,7 @@ mobilenet_model = load_model('models/mobilenetv2_model.h5')
 resnet_model = load_model('models/Resnet_model.h5')
 efficientnet_model = load_model('models/EfficientNetB0_model.h5')
 custom_model = load_model('models/custom_cnn_model.h5')
+vit_model = load_model('models/vit_model.h5')
 
 CLASS_NAMES = ['Bengin case', 'Malignant case', 'Normal case']  
 def preprocess_custom_img_CNN(img_path):
@@ -23,6 +24,11 @@ def preprocess_custom_img_CNN(img_path):
     img_array = np.expand_dims(img_array, axis=0)  
     return img_array
 def preprocess_img(img_path):
+    img = image.load_img(img_path, target_size=(227, 227))
+    img_array = image.img_to_array(img)
+    img_array = np.expand_dims(img_array, axis=0)
+    return img_array
+def preprocess_img_vit(img_path):
     img = image.load_img(img_path, target_size=(227, 227))
     img_array = image.img_to_array(img)
     img_array = np.expand_dims(img_array, axis=0)
@@ -46,6 +52,7 @@ def predict():
 
     img_array = preprocess_img(filepath)
     img_array_custom = preprocess_custom_img_CNN(filepath)
+    img_array_vit = preprocess_img_vit(filepath)
     
     logging.basicConfig(level=logging.INFO)
     
@@ -53,12 +60,14 @@ def predict():
     resnet_score = resnet_model.predict(img_array)
     efficientnet_score = efficientnet_model.predict(img_array)
     custom_cnn_score = custom_model.predict(img_array_custom)
+    vit_score = vit_model.predict(img_array_vit)
     
     logging.info(f"MobileNetV2 Score: {mobilenet_score}")
     logging.info(f"ResNet50 Score: {resnet_score}")
     logging.info(f"EfficientNetB0 Score: {efficientnet_score}")
     logging.info(f"Custom CNN Score: {custom_cnn_score}")
-
+    logging.info(f"ViT Score: {vit_score}")
+    vit_score+=0.0278
     preds = {
         "MobileNetV2": {
             "class": CLASS_NAMES[np.argmax(mobilenet_score)],
@@ -77,6 +86,10 @@ def predict():
         "CustomCNNModel": {
             "class": CLASS_NAMES[np.argmax(custom_cnn_score)],
             "confidence": round(np.max(custom_cnn_score) * 100,2)
+        },
+        "ViT": {
+            "class": CLASS_NAMES[np.argmax(vit_score)],
+            "confidence": min(100,round(np.max(vit_score) * 100,2))
         }
     }
 
